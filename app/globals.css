@@ -24,3 +24,68 @@ body {
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
 }
+
+/* 瀑布流列布局：防止卡片内部断裂 */
+.columns-1 > *,
+.columns-2 > *,
+.columns-3 > *,
+.columns-4 > * {
+  break-inside: avoid;
+}
+
+/* 平滑过渡 — 仅作用于交互元素和暗色模式切换 */
+button, a, input, select, textarea,
+.bg-white, .bg-zinc-50, .bg-zinc-100, .bg-zinc-800, .bg-zinc-900, .bg-zinc-950,
+.dark\:bg-zinc-800, .dark\:bg-zinc-900, .dark\:bg-zinc-950 {
+  transition-property: background-color, border-color, color;
+  transition-duration: 150ms;
+  transition-timing-function: ease;
+}
+
+/* 卡片入场动画 */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.columns-1 > *,
+.columns-2 > *,
+.columns-3 > *,
+.columns-4 > * {
+  animation: fadeInUp 0.4s ease-out both;
+}
+
+.columns-1 > *:nth-child(1) { animation-delay: 0.02s; }
+.columns-1 > *:nth-child(2) { animation-delay: 0.04s; }
+.columns-1 > *:nth-child(3) { animation-delay: 0.06s; }
+.columns-1 > *:nth-child(4) { animation-delay: 0.08s; }
+.columns-1 > *:nth-child(5) { animation-delay: 0.10s; }
+.columns-1 > *:nth-child(6) { animation-delay: 0.12s; }
+.columns-1 > *:nth-child(7) { animation-delay: 0.14s; }
+.columns-1 > *:nth-child(8) { animation-delay: 0.16s; }
+.columns-1 > *:nth-child(9) { animation-delay: 0.18s; }
+.columns-1 > *:nth-child(10) { animation-delay: 0.20s; }
+.columns-1 > *:nth-child(n+11) { animation-delay: 0.22s; }
+
+/* 滚动条美化 */
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: #d4d4d8;
+  border-radius: 3px;
+}
+@media (prefers-color-scheme: dark) {
+  ::-webkit-scrollbar-thumb {
+    background: #52525b;
+  }
+}
